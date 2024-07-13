@@ -1,10 +1,27 @@
+using MediatR;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using OnlineAccountingServer.Persistance.Context;
 using OnlineAccountingServer.Presentation;
+using OnlineAccountingServer.Domain.AppEntities.Identity;
+using OnlineAccountingServer.Application.Services.AppServices;
+using OnlineAccountingServer.Persistance.Services.AppServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
+
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<AppDbContext>();
+
+builder.Services.AddScoped<ICompanyService, CompanyService>();
+
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(OnlineAccountingServer.Application.AssemblyReference).Assembly));
+
+builder.Services.AddAutoMapper(typeof(OnlineAccountingServer.Persistance.AssemblyReference).Assembly);
 
 builder.Services.AddControllers().AddApplicationPart(typeof(AssemblyReference).Assembly);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
