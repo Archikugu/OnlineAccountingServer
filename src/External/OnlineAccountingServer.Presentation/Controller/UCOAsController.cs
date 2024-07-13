@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace OnlineAccountingServer.Presentation.Controller
 {
-    public sealed class UCOAController : ApiController
+    public sealed class UCOAsController : ApiController
     {
-        public UCOAController(IMediator mediator) : base(mediator)
+        public UCOAsController(IMediator mediator) : base(mediator)
         {
         }
 
