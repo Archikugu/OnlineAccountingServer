@@ -4,10 +4,15 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using OnlineAccountingServer.Persistance.Context;
-using OnlineAccountingServer.Presentation;
 using OnlineAccountingServer.Domain.AppEntities.Identity;
 using OnlineAccountingServer.Application.Services.AppServices;
 using OnlineAccountingServer.Persistance.Services.AppServices;
+using OnlineAccountingServer.Domain;
+using OnlineAccountingServer.Persistance;
+using OnlineAccountingServer.Domain.UCOARepositories;
+using OnlineAccountingServer.Persistance.Repositories.UCOARepositories;
+using OnlineAccountingServer.Application.Services.CompanyServices;
+using OnlineAccountingServer.Persistance.Services.CompanyServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,11 +24,21 @@ builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<AppDbC
 
 builder.Services.AddScoped<ICompanyService, CompanyService>();
 
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+builder.Services.AddScoped<IUCOACommandRepository, UCOACommandRepository>();
+builder.Services.AddScoped<IUCOAQueryRepository, UCOAQueryRepository>();
+
+builder.Services.AddScoped<IUCOAService, UCOAService>();
+
+builder.Services.AddScoped<IContextService, ContextService>();
+
+
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(OnlineAccountingServer.Application.AssemblyReference).Assembly));
 
 builder.Services.AddAutoMapper(typeof(OnlineAccountingServer.Persistance.AssemblyReference).Assembly);
 
-builder.Services.AddControllers().AddApplicationPart(typeof(AssemblyReference).Assembly);
+builder.Services.AddControllers().AddApplicationPart(typeof(OnlineAccountingServer.Presentation.AssemblyReference).Assembly);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(setup =>
