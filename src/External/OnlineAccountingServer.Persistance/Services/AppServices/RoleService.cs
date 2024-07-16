@@ -1,15 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using OnlineAccountingServer.Application.Features.RoleFeatures.Commands.CreateRole;
-using OnlineAccountingServer.Application.Features.RoleFeatures.Commands.UpdateRole;
+using OnlineAccountingServer.Application.Features.AppFeatures.RoleFeatures.Commands.CreateRole;
 using OnlineAccountingServer.Application.Services.AppServices;
 using OnlineAccountingServer.Domain.AppEntities.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineAccountingServer.Persistance.Services.AppServices
 {
@@ -24,7 +18,7 @@ namespace OnlineAccountingServer.Persistance.Services.AppServices
             _mapper = mapper;
         }
 
-        public async Task AddAsync(CreateRoleRequest request)
+        public async Task AddAsync(CreateRoleCommand request)
         {
             AppRole role = _mapper.Map<AppRole>(request);
             role.Id = Guid.NewGuid().ToString();

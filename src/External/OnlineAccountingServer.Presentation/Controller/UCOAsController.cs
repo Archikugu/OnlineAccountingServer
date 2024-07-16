@@ -16,10 +16,10 @@ namespace OnlineAccountingServer.Presentation.Controller
         {
         }
 
-        [HttpPost("action")]
-        public async Task<IActionResult> CreateUCOA(CreateUCOARequest request)
+        [HttpPost("[action]")]
+        public async Task<IActionResult> CreateUCOA(CreateUCOACommand request)
         {
-            CreateUCOAResponse response = await _mediator.Send(request);
+            CreateUCOACommandResponse response = await _mediator.Send(request);
             return Ok(response);
         }
 

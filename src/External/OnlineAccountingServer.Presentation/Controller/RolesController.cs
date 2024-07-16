@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using OnlineAccountingServer.Application.Features.RoleFeatures.Commands.CreateRole;
-using OnlineAccountingServer.Application.Features.RoleFeatures.Commands.DeleteRole;
-using OnlineAccountingServer.Application.Features.RoleFeatures.Commands.UpdateRole;
-using OnlineAccountingServer.Application.Features.RoleFeatures.Queries.GetAllRoles;
+using OnlineAccountingServer.Application.Features.AppFeatures.RoleFeatures.Commands.CreateRole;
+using OnlineAccountingServer.Application.Features.AppFeatures.RoleFeatures.Commands.DeleteRole;
+using OnlineAccountingServer.Application.Features.AppFeatures.RoleFeatures.Commands.UpdateRole;
+using OnlineAccountingServer.Application.Features.AppFeatures.RoleFeatures.Queries.GetAllRoles;
 using OnlineAccountingServer.Presentation.Abstraction;
 using System;
 using System.Collections.Generic;
@@ -20,36 +20,34 @@ namespace OnlineAccountingServer.Presentation.Controller
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> CreateRole(CreateRoleRequest request)
+        public async Task<IActionResult> CreateRole(CreateRoleCommand request)
         {
-            CreateRoleResponse response = await _mediator.Send(request);
+            CreateRoleCommandResponse response = await _mediator.Send(request);
             return Ok(response);
         }
 
         [HttpGet("[action]")]
         public async Task<IActionResult> GetAllRoles()
         {
-            GetAllRolesRequest request = new();
-            GetAllRolesResponse response = await _mediator.Send(request);
+            GetAllRolesQuery request = new();
+            GetAllRolesQueryResponse response = await _mediator.Send(request);
             return Ok(response);
         }
 
         [HttpPut("[action]")]
-        public async Task<IActionResult> UpdateRole(UpdateRoleRequest request)
+        public async Task<IActionResult> UpdateRole(UpdateRoleCommand request)
         {
-            UpdateRoleResponse response = await _mediator.Send(request);
+            UpdateRoleCommandResponse response = await _mediator.Send(request);
             return Ok(response);
         }
 
         [HttpDelete("[action]/{id}")]
         public async Task<IActionResult> DeleteRole(string id)
         {
-            DeleteRoleRequest request = new()
-            {
-                Id = id
-            };
+            DeleteRoleCommand request = new(id);
+           
 
-            DeleteRoleResponse response = await _mediator.Send(request);
+            DeleteRoleCommandResponse response = await _mediator.Send(request);
             return Ok(response);
         }
     }

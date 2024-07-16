@@ -29,7 +29,7 @@ namespace OnlineAccountingServer.Persistance.Services.CompanyServices
             _mapper = mapper;
         }
 
-        public async Task CreateUCOAAsync(CreateUCOARequest request)
+        public async Task CreateUCOAAsync(CreateUCOACommand request)
         {
             _context = (CompanyDbContext)_contextService.CreateDbContextInstance(request.CompanyId);
             _commandRepository.SetDbContextInstance(_context);
