@@ -18,7 +18,7 @@ namespace OnlineAccountingServer.Application.Features.AppFeatures.CompanyFeature
             Company company = await _companyService.GetCompanyByName(request.Name);
             if (company != null) throw new Exception("Bu Şirket Adı Daha Önce Kullanılmış!");
 
-            await _companyService.CreateCompany(request);
+            await _companyService.CreateCompany(request, cancellationToken);
             return new();
         }
     }

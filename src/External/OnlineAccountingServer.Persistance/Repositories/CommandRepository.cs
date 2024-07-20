@@ -23,14 +23,14 @@ namespace OnlineAccountingServer.Persistance.Repositories
             _context = (CompanyDbContext)context;
             Entity = _context.Set<T>();
         }
-        public async Task AddAsync(T entity)
+        public async Task AddAsync(T entity, CancellationToken cancellationToken)
         {
-            await Entity.AddAsync(entity);
+            await Entity.AddAsync(entity, cancellationToken);
         }
 
-        public async Task AddRangeAsync(T entity)
+        public async Task AddRangeAsync(IEnumerable<T> entity, CancellationToken cancellationToken)
         {
-            await Entity.AddRangeAsync(entity);
+            await Entity.AddRangeAsync(entity, cancellationToken);
         }
 
         public void Remove(T entity)
@@ -56,7 +56,7 @@ namespace OnlineAccountingServer.Persistance.Repositories
 
         public void UpdateRange(IEnumerable<T> entities)
         {
-           Entity.UpdateRange(entities);
+            Entity.UpdateRange(entities);
         }
     }
 }

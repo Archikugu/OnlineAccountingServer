@@ -3,13 +3,8 @@ using OnlineAccountingServer.Application.Features.CompanyFeatures.UCOAFeatures.C
 using OnlineAccountingServer.Application.Services.CompanyServices;
 using OnlineAccountingServer.Domain;
 using OnlineAccountingServer.Domain.CompanyEntities;
-using OnlineAccountingServer.Domain.UCOARepositories;
+using OnlineAccountingServer.Domain.Repositories.UCOARepositories;
 using OnlineAccountingServer.Persistance.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineAccountingServer.Persistance.Services.CompanyServices
 {
@@ -29,7 +24,7 @@ namespace OnlineAccountingServer.Persistance.Services.CompanyServices
             _mapper = mapper;
         }
 
-        public async Task CreateUCOAAsync(CreateUCOACommand request)
+        public async Task CreateUCOAAsync(CreateUCOACommand request, CancellationToken cancellationToken)
         {
             _context = (CompanyDbContext)_contextService.CreateDbContextInstance(request.CompanyId);
             _commandRepository.SetDbContextInstance(_context);
@@ -38,8 +33,8 @@ namespace OnlineAccountingServer.Persistance.Services.CompanyServices
             UniformChartOfAccount uniformChartOfAccount = _mapper.Map<UniformChartOfAccount>(request);
             uniformChartOfAccount.Id = Guid.NewGuid().ToString();
 
-            await _commandRepository.AddAsync(uniformChartOfAccount);
-            await _unitOfWork.SaveChangesAsync();
+            await _commandRepository.AddAsync(uniformChartOfAccount, cancellationToken);
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
         }
     }
 }

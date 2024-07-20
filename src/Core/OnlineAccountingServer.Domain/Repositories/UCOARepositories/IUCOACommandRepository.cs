@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineAccountingServer.Domain.UCOARepositories
+namespace OnlineAccountingServer.Domain.Repositories.UCOARepositories
 {
     public interface IUCOACommandRepository : ICommandRepository<UniformChartOfAccount>
     {

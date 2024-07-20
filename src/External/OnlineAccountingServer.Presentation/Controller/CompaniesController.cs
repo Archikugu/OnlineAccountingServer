@@ -3,11 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using OnlineAccountingServer.Application.Features.AppFeatures.CompanyFeatures.Commands.CreateCompany;
 using OnlineAccountingServer.Application.Features.AppFeatures.CompanyFeatures.Commands.MigrateCompanyDatabases;
 using OnlineAccountingServer.Presentation.Abstraction;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineAccountingServer.Presentation.Controller
 {
@@ -17,9 +12,9 @@ namespace OnlineAccountingServer.Presentation.Controller
         {
         }
         [HttpPost("[action]")]
-        public async Task<IActionResult> CreateCompany(CreateCompanyCommand request)
+        public async Task<IActionResult> CreateCompany(CreateCompanyCommand request, CancellationToken cancellationToken)
         {
-            CreateCompanyCommandResponse response = await _mediator.Send(request);
+            CreateCompanyCommandResponse response = await _mediator.Send(request, cancellationToken);
             return Ok(response);
         }
         [HttpGet("[action]")]

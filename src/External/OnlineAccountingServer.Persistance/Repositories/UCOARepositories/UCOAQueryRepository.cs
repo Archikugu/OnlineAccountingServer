@@ -1,5 +1,5 @@
 ﻿using OnlineAccountingServer.Domain.CompanyEntities;
-using OnlineAccountingServer.Domain.UCOARepositories;
+using OnlineAccountingServer.Domain.Repositories.UCOARepositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;

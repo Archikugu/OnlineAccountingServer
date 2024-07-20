@@ -19,13 +19,13 @@ namespace OnlineAccountingServer.Persistance.Context
         {
             if (company != null)
             {
-                if (company.UserId == "")
+                if (company.ServerUserId == "")
                 {
                     ConnectionString = $"Data Source={company.ServerName};Initial Catalog={company.DatabaseName};Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False";
                 }
                 else
                 {
-                    ConnectionString = $"Data Source={company.ServerName};Initial Catalog={company.DatabaseName};UserId={company.UserId};Password={company.Password};Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False";
+                    ConnectionString = $"Data Source={company.ServerName};Initial Catalog={company.DatabaseName};UserId={company.ServerUserId};Password={company.ServerPassword};Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False";
                 }
             }
         }

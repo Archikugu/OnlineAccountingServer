@@ -1,12 +1,12 @@
 ﻿
 using OnlineAccountingServer.Application.Services.AppServices;
 using OnlineAccountingServer.Application.Services.CompanyServices;
-using OnlineAccountingServer.Domain.UCOARepositories;
 using OnlineAccountingServer.Domain;
 using OnlineAccountingServer.Persistance.Repositories.UCOARepositories;
 using OnlineAccountingServer.Persistance.Services.AppServices;
 using OnlineAccountingServer.Persistance.Services.CompanyServices;
 using OnlineAccountingServer.Persistance;
+using OnlineAccountingServer.Domain.Repositories.UCOARepositories;
 
 namespace OnlineAccountingServer.WebAPI.Configurations
 {
