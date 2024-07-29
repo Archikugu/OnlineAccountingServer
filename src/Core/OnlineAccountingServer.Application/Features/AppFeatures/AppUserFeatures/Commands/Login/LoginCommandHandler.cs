@@ -10,9 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineAccountingServer.Application.Features.AppFeatures.AppUserFeatures.Login
+namespace OnlineAccountingServer.Application.Features.AppFeatures.AppUserFeatures.Commands.Login
 {
-    public class LoginCommandHandler : ICommandHandler<LoginCommand,LoginCommandResponse>
+    public class LoginCommandHandler : ICommandHandler<LoginCommand, LoginCommandResponse>
     {
         private readonly IJwtProvider _jwtProvider;
         private readonly UserManager<AppUser> _userManager;
@@ -41,7 +41,7 @@ namespace OnlineAccountingServer.Application.Features.AppFeatures.AppUserFeature
                 user.LastName,
                 user.Id,
                 await _jwtProvider.CreateTokenAsync(user, roles));
-           
+
             return response;
         }
     }

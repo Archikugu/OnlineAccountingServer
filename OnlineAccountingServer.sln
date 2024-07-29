@@ -11,17 +11,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{46C90D0C-1
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{108FB538-2371-4BBD-9884-6F5DD5500C5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAccountingServer.Application", "src\Core\OnlineAccountingServer.Application\OnlineAccountingServer.Application.csproj", "{1BFC7076-0F90-4457-8102-4299A1F01E49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineAccountingServer.Application", "src\Core\OnlineAccountingServer.Application\OnlineAccountingServer.Application.csproj", "{1BFC7076-0F90-4457-8102-4299A1F01E49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAccountingServer.Domain", "src\Core\OnlineAccountingServer.Domain\OnlineAccountingServer.Domain.csproj", "{19782B1F-79AE-41D9-9203-10219C6C57E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineAccountingServer.Domain", "src\Core\OnlineAccountingServer.Domain\OnlineAccountingServer.Domain.csproj", "{19782B1F-79AE-41D9-9203-10219C6C57E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAccountingServer.Infrastructure", "src\External\OnlineAccountingServer.Infrastructure\OnlineAccountingServer.Infrastructure.csproj", "{AF0FEFB7-1DB8-4041-B7C7-D1EB1B551538}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineAccountingServer.Infrastructure", "src\External\OnlineAccountingServer.Infrastructure\OnlineAccountingServer.Infrastructure.csproj", "{AF0FEFB7-1DB8-4041-B7C7-D1EB1B551538}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAccountingServer.Persistance", "src\External\OnlineAccountingServer.Persistance\OnlineAccountingServer.Persistance.csproj", "{C7AB8558-243A-43C1-ADA8-EFD6367CD9DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineAccountingServer.Persistance", "src\External\OnlineAccountingServer.Persistance\OnlineAccountingServer.Persistance.csproj", "{C7AB8558-243A-43C1-ADA8-EFD6367CD9DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAccountingServer.Presentation", "src\External\OnlineAccountingServer.Presentation\OnlineAccountingServer.Presentation.csproj", "{EBA5CB38-E2CE-40E7-8226-D0297716CC71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineAccountingServer.Presentation", "src\External\OnlineAccountingServer.Presentation\OnlineAccountingServer.Presentation.csproj", "{EBA5CB38-E2CE-40E7-8226-D0297716CC71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAccountingServer.WebAPI", "src\OnlineAccountingServer.WebAPI\OnlineAccountingServer.WebAPI.csproj", "{DAD4D04D-8AC7-490C-82EA-307326B67D55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineAccountingServer.WebAPI", "src\OnlineAccountingServer.WebAPI\OnlineAccountingServer.WebAPI.csproj", "{DAD4D04D-8AC7-490C-82EA-307326B67D55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAccountingServer.UnitTest", "test\OnlineAccountingServer.UnitTest\OnlineAccountingServer.UnitTest.csproj", "{B5FC4D77-6E0E-40A4-8E6C-476BF7FFA9D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{DAD4D04D-8AC7-490C-82EA-307326B67D55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAD4D04D-8AC7-490C-82EA-307326B67D55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAD4D04D-8AC7-490C-82EA-307326B67D55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5FC4D77-6E0E-40A4-8E6C-476BF7FFA9D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5FC4D77-6E0E-40A4-8E6C-476BF7FFA9D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5FC4D77-6E0E-40A4-8E6C-476BF7FFA9D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5FC4D77-6E0E-40A4-8E6C-476BF7FFA9D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,6 +72,7 @@ Global
 		{C7AB8558-243A-43C1-ADA8-EFD6367CD9DC} = {108FB538-2371-4BBD-9884-6F5DD5500C5C}
 		{EBA5CB38-E2CE-40E7-8226-D0297716CC71} = {108FB538-2371-4BBD-9884-6F5DD5500C5C}
 		{DAD4D04D-8AC7-490C-82EA-307326B67D55} = {391F53ED-44AA-47A4-A59B-F310BF21B383}
+		{B5FC4D77-6E0E-40A4-8E6C-476BF7FFA9D0} = {417C7CC7-E06E-40A7-ACF9-9AE6B316C38B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BE864C1E-748C-427C-8B3F-1E2C1669D55C}

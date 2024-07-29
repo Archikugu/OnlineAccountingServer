@@ -11,17 +11,19 @@ namespace OnlineAccountingServer.Persistance.Services.CompanyServices
     public sealed class UCOAService : IUCOAService
     {
         private readonly IUCOACommandRepository _commandRepository;
+        private readonly IUCOAQueryRepository _queryRepository;
         private readonly IContextService _contextService;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private CompanyDbContext _context;
 
-        public UCOAService(IUCOACommandRepository commandRepository, IContextService contextService, IUnitOfWork unitOfWork, IMapper mapper)
+        public UCOAService(IUCOACommandRepository commandRepository, IContextService contextService, IUnitOfWork unitOfWork, IMapper mapper, IUCOAQueryRepository queryRepository)
         {
             _commandRepository = commandRepository;
             _contextService = contextService;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _queryRepository = queryRepository;
         }
 
         public async Task CreateUCOAAsync(CreateUCOACommand request, CancellationToken cancellationToken)
@@ -35,6 +37,12 @@ namespace OnlineAccountingServer.Persistance.Services.CompanyServices
 
             await _commandRepository.AddAsync(uniformChartOfAccount, cancellationToken);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
+        }
+
+        public async Task<UniformChartOfAccount> GetByCode(string code)
+        {
+
+            return await _queryRepository.GetFirstByExpression(p => p.Code == code);
         }
     }
 }
