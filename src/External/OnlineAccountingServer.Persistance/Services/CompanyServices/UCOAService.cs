@@ -3,7 +3,8 @@ using OnlineAccountingServer.Application.Features.CompanyFeatures.UCOAFeatures.C
 using OnlineAccountingServer.Application.Services.CompanyServices;
 using OnlineAccountingServer.Domain;
 using OnlineAccountingServer.Domain.CompanyEntities;
-using OnlineAccountingServer.Domain.Repositories.UCOARepositories;
+using OnlineAccountingServer.Domain.Repositories.CompanyContextRepositories.UCOARepositories;
+using OnlineAccountingServer.Domain.UnitOfWorks;
 using OnlineAccountingServer.Persistance.Context;
 
 namespace OnlineAccountingServer.Persistance.Services.CompanyServices
@@ -13,11 +14,11 @@ namespace OnlineAccountingServer.Persistance.Services.CompanyServices
         private readonly IUCOACommandRepository _commandRepository;
         private readonly IUCOAQueryRepository _queryRepository;
         private readonly IContextService _contextService;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly ICompanyUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private CompanyDbContext _context;
 
-        public UCOAService(IUCOACommandRepository commandRepository, IContextService contextService, IUnitOfWork unitOfWork, IMapper mapper, IUCOAQueryRepository queryRepository)
+        public UCOAService(IUCOACommandRepository commandRepository, IContextService contextService, ICompanyUnitOfWork unitOfWork, IMapper mapper, IUCOAQueryRepository queryRepository)
         {
             _commandRepository = commandRepository;
             _contextService = contextService;

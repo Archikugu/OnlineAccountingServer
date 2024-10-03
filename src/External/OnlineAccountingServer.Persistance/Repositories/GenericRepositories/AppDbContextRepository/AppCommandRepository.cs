@@ -1,28 +1,25 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OnlineAccountingServer.Domain.Abstractions;
-using OnlineAccountingServer.Domain.Repositories;
+using OnlineAccountingServer.Domain.Repositories.GenericRepositories.AppDbContextRepository;
 using OnlineAccountingServer.Persistance.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace OnlineAccountingServer.Persistance.Repositories
+namespace OnlineAccountingServer.Persistance.Repositories.GenericRepositories.AppDbContextRepository
 {
-    public class CommandRepository<T> : ICommandRepository<T> where T : Entity
+    public class AppCommandRepository<T> : IAppCommandRepository<T> where T : Entity
     {
-        private static readonly Func<CompanyDbContext, string, Task<T>> GetByIdCompiled = EF.CompileAsyncQuery((CompanyDbContext context, string id) => context.Set<T>().FirstOrDefault(p => p.Id == id));
+        private readonly AppDbContext _context;
 
-        private CompanyDbContext _context;
+        public AppCommandRepository(AppDbContext context)
+        {
+            _context = context;
+            Entity = _context.Set<T>();
+
+        }
+
+        private static readonly Func<AppDbContext, string, Task<T>> GetByIdCompiled = EF.CompileAsyncQuery((AppDbContext context, string id) => context.Set<T>().FirstOrDefault(p => p.Id == id));
 
         public DbSet<T> Entity { get; set; }
 
-        public void SetDbContextInstance(DbContext context)
-        {
-            _context = (CompanyDbContext)context;
-            Entity = _context.Set<T>();
-        }
         public async Task AddAsync(T entity, CancellationToken cancellationToken)
         {
             await Entity.AddAsync(entity, cancellationToken);

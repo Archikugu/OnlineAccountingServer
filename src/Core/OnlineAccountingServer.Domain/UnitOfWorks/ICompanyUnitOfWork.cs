@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineAccountingServer.Domain
+namespace OnlineAccountingServer.Domain.UnitOfWorks
 {
-    public interface IUnitOfWork
+    public interface ICompanyUnitOfWork : IUnitOfWork
     {
         void SetDbContextInstance(DbContext context);
-        Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

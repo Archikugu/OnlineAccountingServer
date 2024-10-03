@@ -2,11 +2,15 @@
 using OnlineAccountingServer.Application.Services.AppServices;
 using OnlineAccountingServer.Application.Services.CompanyServices;
 using OnlineAccountingServer.Domain;
-using OnlineAccountingServer.Persistance.Repositories.UCOARepositories;
 using OnlineAccountingServer.Persistance.Services.AppServices;
 using OnlineAccountingServer.Persistance.Services.CompanyServices;
 using OnlineAccountingServer.Persistance;
-using OnlineAccountingServer.Domain.Repositories.UCOARepositories;
+using OnlineAccountingServer.Domain.Repositories.CompanyContextRepositories.UCOARepositories;
+using OnlineAccountingServer.Persistance.Repositories.CompanyContextRepositories.UCOARepositories;
+using OnlineAccountingServer.Domain.Repositories.AppDbContextRepositories.CompanyRepositories;
+using OnlineAccountingServer.Persistance.Repositories.AppDbContextRepositories.CompanyRepositories;
+using OnlineAccountingServer.Domain.UnitOfWorks;
+using OnlineAccountingServer.Persistance.UnitOfWorks;
 
 namespace OnlineAccountingServer.WebAPI.Configurations
 {
@@ -15,7 +19,8 @@ namespace OnlineAccountingServer.WebAPI.Configurations
         public void Install(IServiceCollection services, IConfiguration configuration)
         {
             #region Context UnitOfWork
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<ICompanyUnitOfWork, CompanyUnitOfWork>();
+            services.AddScoped<IAppUnitOfWork, AppUnitOfWork>();
             services.AddScoped<IContextService, ContextService>();
             #endregion
 
@@ -28,6 +33,9 @@ namespace OnlineAccountingServer.WebAPI.Configurations
             #region Repositories
             services.AddScoped<IUCOACommandRepository, UCOACommandRepository>();
             services.AddScoped<IUCOAQueryRepository, UCOAQueryRepository>();
+
+            services.AddScoped<ICompanyCommandRepository, CompanyCommandRepository>();
+            services.AddScoped<ICompanyQueryRepository, CompanyQueryRepository>();
             #endregion
 
         }

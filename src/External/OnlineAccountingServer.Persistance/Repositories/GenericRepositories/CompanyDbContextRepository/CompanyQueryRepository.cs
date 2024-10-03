@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OnlineAccountingServer.Domain.Abstractions;
-using OnlineAccountingServer.Domain.Repositories;
+using OnlineAccountingServer.Domain.Repositories.GenericRepositories.CompanyDbContextRepository;
 using OnlineAccountingServer.Persistance.Context;
 using System.Linq.Expressions;
 
-namespace OnlineAccountingServer.Persistance.Repositories
+namespace OnlineAccountingServer.Persistance.Repositories.GenericRepositories.CompanyDbContextRepository
 {
-    public class QueryRepository<T> : IQueryRepository<T> where T : Entity
+    public class CompanyQueryRepository<T> : ICompanyQueryRepository<T> where T : Entity
     {
         private static readonly Func<CompanyDbContext, string, bool, Task<T>> GetByIdCompiled = EF.CompileAsyncQuery((CompanyDbContext context, string id, bool isTracking) => isTracking == true ? context.Set<T>().FirstOrDefault(p => p.Id == id) : context.Set<T>().AsNoTracking().FirstOrDefault(p => p.Id == id));
 
